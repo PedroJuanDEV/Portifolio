@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { projectsData } from '../data/projects';
 
 export const Projects: React.FC = () => {
-  // Estado para controlar qual projeto está selecionado no modal
   const [selectedProject, setSelectedProject] = useState<typeof projectsData[0] | null>(null);
 
-  // Efeito para travar a rolagem da página quando a janela modal estiver aberta
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden';
@@ -17,26 +15,29 @@ export const Projects: React.FC = () => {
 
   return (
     <>
+      {/* Box de Fundo Principal com o Gradiente Radial */}
       <section id="projects" style={{
         marginTop: '24px',
         padding: '48px 32px',
         maxWidth: '1200px',
         marginLeft: 'auto',
         marginRight: 'auto',
-        backgroundColor: '#161617',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        borderRadius: '24px'
+        background: 'radial-gradient(circle at 35% 50%, #fff4d9 0%, #ffcc70 45%, #ff8c00 100%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        borderRadius: '24px',
+        boxShadow: '0 20px 40px rgba(255, 140, 0, 0.2)'
       }}>
         <h2 style={{
           fontSize: '28px',
           fontWeight: 700,
-          color: '#f5f5f7',
+          color: '#1d1d1f',
           letterSpacing: '-0.02em',
           marginBottom: '32px'
         }}>
           Projetos em Destaque
         </h2>
 
+        {/* Grid de Cards */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
@@ -45,24 +46,26 @@ export const Projects: React.FC = () => {
           {projectsData.map((project) => (
             <div 
               key={project.id} 
-              onClick={() => setSelectedProject(project)} // Abre o modal ao clicar na box
+              onClick={() => setSelectedProject(project)}
               style={{
                 padding: '32px',
-                backgroundColor: '#1d1d1f',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                backgroundColor: '#ffffff',
+                color: '#1d1d1f',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
                 borderRadius: '18px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
               }}
             >
               <div>
@@ -75,18 +78,18 @@ export const Projects: React.FC = () => {
                       href={project.githubUrl} 
                       target="_blank" 
                       rel="noreferrer" 
-                      onClick={(e) => e.stopPropagation()} // Impede que o clique direto no link abra o modal junto
-                      style={{ color: '#2997ff', fontSize: '13px', textDecoration: 'none', fontWeight: 500 }}
+                      onClick={(e) => e.stopPropagation()}
+                      style={{ color: '#0066cc', fontSize: '13px', textDecoration: 'none', fontWeight: 600 }}
                     >
                       Ver código ↗
                     </a>
                   )}
                 </div>
 
-                <h3 style={{ fontSize: '20px', fontWeight: 600, margin: '0 0 12px 0', color: '#f5f5f7', letterSpacing: '-0.01em' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: 600, margin: '0 0 12px 0', color: '#1d1d1f', letterSpacing: '-0.01em' }}>
                   {project.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#86868b', lineHeight: '1.6', margin: '0 0 24px 0', fontWeight: 400 }}>
+                <p style={{ fontSize: '14px', color: '#515154', lineHeight: '1.6', margin: '0 0 24px 0', fontWeight: 400 }}>
                   {project.description}
                 </p>
               </div>
@@ -96,10 +99,10 @@ export const Projects: React.FC = () => {
                   <span key={tech} style={{
                     fontSize: '12px',
                     padding: '4px 10px',
-                    backgroundColor: '#000000',
-                    color: '#f5f5f7',
+                    backgroundColor: '#f5f5f7',
+                    color: '#1d1d1f',
                     borderRadius: '980px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    border: '1px solid #d2d2d7',
                     fontWeight: 500
                   }}>
                     {tech}
@@ -111,18 +114,18 @@ export const Projects: React.FC = () => {
         </div>
       </section>
 
-      {/* JANELA MODAL CENTRAL */}
+      {/* JANELA MODAL CENTRAL (Agora Branca) */}
       {selectedProject && (
         <div 
-          onClick={() => setSelectedProject(null)} // Fecha o modal ao clicar no fundo
+          onClick={() => setSelectedProject(null)}
           style={{
             position: 'fixed',
             top: 0,
             left: 0,
             width: '100vw',
             height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.65)', // Fundo escurecido
-            backdropFilter: 'saturate(180%) blur(12px)', // Efeito de desfoque
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'saturate(180%) blur(12px)',
             WebkitBackdropFilter: 'saturate(180%) blur(12px)',
             zIndex: 999,
             display: 'flex',
@@ -131,21 +134,20 @@ export const Projects: React.FC = () => {
             padding: '24px'
           }}
         >
-          {/* Caixa de Conteúdo do Modal (Mantendo a paleta Dark Mode) */}
           <div 
-            onClick={(e) => e.stopPropagation()} // Impede que o clique dentro da caixa feche o modal
+            onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
               maxWidth: '640px',
-              backgroundColor: '#1d1d1f',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              backgroundColor: '#ffffff', // Fundo branco na janela modal
+              border: '1px solid rgba(0, 0, 0, 0.08)',
               borderRadius: '24px',
               padding: '40px',
-              boxShadow: '0 24px 48px rgba(0,0,0,0.4)',
+              boxShadow: '0 24px 48px rgba(0,0,0,0.18)',
               position: 'relative'
             }}
           >
-            {/* Botão Fechar (X) */}
+            {/* Botão Fechar */}
             <button 
               onClick={() => setSelectedProject(null)}
               style={{
@@ -155,24 +157,20 @@ export const Projects: React.FC = () => {
                 width: '32px',
                 height: '32px',
                 borderRadius: '50%',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                backgroundColor: '#2d2d2f',
-                color: '#f5f5f7',
+                border: '1px solid #d2d2d7',
+                backgroundColor: '#f5f5f7',
+                color: '#1d1d1f',
                 cursor: 'pointer',
                 fontWeight: 'bold',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'background-color 0.2s ease'
+                justifyContent: 'center'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3d3d3f'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2d2d2f'}
             >
               ✕
             </button>
 
-            {/* Título e Tecnologias */}
-            <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#f5f5f7', margin: '0 0 16px 0', letterSpacing: '-0.02em', paddingRight: '40px' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#1d1d1f', margin: '0 0 16px 0', letterSpacing: '-0.02em', paddingRight: '40px' }}>
               {selectedProject.title}
             </h2>
             
@@ -181,10 +179,10 @@ export const Projects: React.FC = () => {
                 <span key={tech} style={{
                   fontSize: '12px',
                   padding: '4px 10px',
-                  backgroundColor: '#000000',
-                  color: '#f5f5f7',
+                  backgroundColor: '#f5f5f7',
+                  color: '#1d1d1f',
                   borderRadius: '980px',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: '1px solid #d2d2d7',
                   fontWeight: 500
                 }}>
                   {tech}
@@ -192,13 +190,11 @@ export const Projects: React.FC = () => {
               ))}
             </div>
 
-            {/* Descrição - Renderiza a detailedDescription se existir em projectsData, senão a description padrão */}
-            <p style={{ fontSize: '16px', color: '#86868b', lineHeight: '1.6', margin: '0 0 32px 0' }}>
-              {/* @ts-ignore - Caso você não tenha tipado detailedDescription na sua interface base */}
+            <p style={{ fontSize: '16px', color: '#515154', lineHeight: '1.6', margin: '0 0 32px 0' }}>
+              {/* @ts-ignore */}
               {selectedProject.detailedDescription || selectedProject.description}
             </p>
 
-            {/* Botão de Ação para o Repositório - Invertido (Branco) para dar destaque */}
             {selectedProject.githubUrl && (
               <a 
                 href={selectedProject.githubUrl} 
@@ -207,17 +203,14 @@ export const Projects: React.FC = () => {
                 style={{
                   display: 'inline-block',
                   padding: '14px 28px',
-                  backgroundColor: '#f5f5f7',
-                  color: '#1d1d1f',
+                  backgroundColor: '#1d1d1f',
+                  color: '#ffffff',
                   borderRadius: '980px',
                   fontSize: '14px',
                   fontWeight: 600,
                   textDecoration: 'none',
-                  textAlign: 'center',
-                  transition: 'transform 0.2s ease'
+                  textAlign: 'center'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
                 Acessar Repositório ↗
               </a>

@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
             fontSize: 'clamp(42px, 7vw, 84px)',
             fontWeight: 900,
             fontFamily: "'Sora', 'Outfit', -apple-system, sans-serif",
-            color: '#1d1d1f', // Cor sólida cinza escuro/quase preto da Apple
+            color: '#1d1d1f',
             lineHeight: '0.95',
             letterSpacing: '-0.03em',
             margin: 0,
@@ -93,7 +93,7 @@ export const Hero: React.FC = () => {
           letterSpacing: '-0.01em',
           margin: '0 0 32px 0'
         }}>
-          Acadêmico de Análise e Desenvolvimento de Sistemas na Faculdade Senac. Especializado em construir arquiteturas Back-end sólidas, consumo de APIs RESTful (.NET, C#, Node.js) e modelagem de dados relacionais.
+          Olá! Me chamo Pedro Juan e sou estudante de ADS na Universidade Senac, uma oportunidade que nasceu através do programa Embarque Digital em parceria com o banco Santander. Atualmente, estou cursando o meu 5º período. Direciono meus estudos ao ecossistema .NET e a bancos de dados relacionais. Estou em busca da minha primeira oportunidade como desenvolvedor estagiário. Sinta-se à vontade para navegar entre meus projetos e conhecer um pouco mais sobre a minha atuação.
         </p>
 
         {/* Botões de Ação */}
@@ -156,7 +156,9 @@ export const Hero: React.FC = () => {
 
           <a
             href="/Curriculo ---Pedro Juan.pdf"
+            download="Curriculo ---Pedro Juan.pdf"
             target="_blank"
+            rel="noreferrer"
             style={{
               marginLeft: 'auto',
               fontSize: '14px',

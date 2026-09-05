@@ -1,5 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 
+// Importação das imagens de fundo (ajuste os nomes conforme salvou na pasta assets)
+import sireneImg from '../assets/Sirene.jpg';
+import robodImg from '../assets/Robo Nao.jpg';
+import dotImg from '../assets/Dot.jpg';
+import toiImg from '../assets/Toi.jpg';
+
 interface ExperienceItem {
   id: string;
   role: string;
@@ -12,43 +18,35 @@ interface ExperienceItem {
 const experiencesData: ExperienceItem[] = [
   {
     id: '1',
-    role: 'Bootcamp de IA e ServiceNow',
-    company: 'Residência Tecnológica: EY',
-    period: 'Março/2026 — Julho/2026',
-    description: 'Imersão de 4 meses focada em Inteligência Artificial. Desenvolvimento e simulação de diretrizes de segurança aplicadas a 5+ cenários complexos de agentes de IA e capacitação na plataforma ServiceNow.',
-    imageUrl: '/assets/ey-bg.png'
-  },
-  {
-    id: '2',
     role: 'SIRENE — Sistema de Gestão para Bombeiros',
     company: 'Projeto Integrador',
     period: 'Agosto/2025 — Dezembro/2025',
     description: 'Plataforma administrativa de missão crítica para o Corpo de Bombeiros de PE. Back-end estruturado em Node.js com WebSockets para dados em tempo real, reduzindo em até 40% o tempo de resposta.',
-    imageUrl: '/assets/sirene-bg.png'
+    imageUrl: sireneImg
   },
   {
-    id: '3',
+    id: '2',
     role: 'Robótica — Robô NAO v3',
     company: 'Residência Tecnológica: CETEC',
     period: 'Agosto/2025 — Dezembro/2025',
     description: 'Programação do robô bípede NAO v3 para atuar como Intérprete Textual, gerando insights automatizados e relatórios pedagógicos para professores do Ensino Fundamental I.',
-    imageUrl: '/assets/nao-bg.png'
+    imageUrl: robodImg
   },
   {
-    id: '4',
+    id: '3',
     role: 'Projeto RiseUP — Interface de Ponto',
     company: 'Residência Tecnológica: SiDi',
     period: 'Fevereiro/2025 — Julho/2025',
     description: 'Desenvolvimento de sistema para controle de ponto eletrônico, mapeando a arquitetura lógica e os fluxos do Back-end para garantir integridade e consistência de concorrência.',
-    imageUrl: '/assets/riseup-bg.png'
+    imageUrl: dotImg
   },
   {
-    id: '5',
-    role: 'Projeto Kick-off — Moeda Sustentável',
-    company: 'Residência Tecnológica: Kick-off',
-    period: 'Novembro/2024 — Dezembro/2024',
-    description: 'Ideação e modelagem matemática e lógica de negócios de uma Moeda Sustentável voltada para a gamificação do turismo sustentável em Recife.',
-    imageUrl: '/assets/kickoff-bg.png'
+    id: '4',
+    role: 'Sistema Inteligente de Acesso (Toi)',
+    company: 'Residência Tecnológica',
+    period: '2025',
+    description: 'Sistema inteligente de acesso integrado com tecnologia RFID, otimizando o fluxo de controle, segurança e validação de credenciais de forma automatizada.',
+    imageUrl: toiImg
   }
 ];
 
@@ -56,7 +54,6 @@ export const Experience: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Duplicamos a lista para criar o efeito de loop infinito
   const infiniteExperiences = [...experiencesData, ...experiencesData];
 
   useEffect(() => {
@@ -65,16 +62,15 @@ export const Experience: React.FC = () => {
     const interval = setInterval(() => {
       if (carouselRef.current) {
         const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-        const cardWidth = 380 + 24; // Largura do card + gap
+        const cardWidth = 380 + 24;
 
-        // Verifica se chegou ao fim da primeira metade do carrossel duplicado
         if (scrollLeft >= (scrollWidth - clientWidth) / 2) {
           carouselRef.current.scrollLeft = 0;
         } else {
           carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
         }
       }
-    }, 3000);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [isPaused]);
@@ -184,56 +180,46 @@ export const Experience: React.FC = () => {
             key={`${item.id}-${index}`}
             style={{
               flex: '0 0 380px',
-              height: '280px',
+              height: '300px',
               scrollSnapAlign: 'start',
               padding: '32px',
               position: 'relative',
               overflow: 'hidden',
-              backgroundColor: '#f5f5f7',
-              backgroundImage: item.imageUrl ? `linear-gradient(180deg, rgba(245, 245, 247, 0.85) 0%, rgba(245, 245, 247, 0.95) 100%), url(${item.imageUrl})` : 'none',
+              // Gradiente escuro translúcido por cima da imagem para garantir leitura perfeita do texto
+              backgroundImage: item.imageUrl 
+                ? `linear-gradient(180deg, rgba(20, 20, 22, 0.85) 0%, rgba(20, 20, 22, 0.92) 100%), url(${item.imageUrl})` 
+                : 'linear-gradient(180deg, #1d1d1f 0%, #1d1d1f 100%)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              border: '1px solid #e5e5e7',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '20px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.02)'
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+              transition: 'transform 0.3s ease, border-color 0.3s ease'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-6px)';
-              e.currentTarget.style.borderColor = '#0066cc';
-              e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 0, 0, 0.08)';
+              e.currentTarget.style.borderColor = '#2997ff';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.borderColor = '#e5e5e7';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.02)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
             }}
           >
             <div style={{ position: 'relative', zIndex: 2 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '12px', fontWeight: 600, color: '#86868b', fontFamily: 'monospace' }}>
-                  {item.period}
-                </span>
-                
-                {item.imageUrl && (
-                  <img 
-                    src={item.imageUrl} 
-                    alt={item.company} 
-                    style={{ width: '28px', height: '28px', borderRadius: '6px', objectFit: 'contain' }}
-                    onError={(e) => (e.currentTarget.style.display = 'none')}
-                  />
-                )}
-              </div>
+              <span style={{ fontSize: '12px', fontWeight: 600, color: '#a1a1aa', fontFamily: 'monospace' }}>
+                {item.period}
+              </span>
 
-              <h3 style={{ fontSize: '19px', fontWeight: 600, margin: '12px 0 4px 0', color: '#1d1d1f', letterSpacing: '-0.01em' }}>
+              <h3 style={{ fontSize: '19px', fontWeight: 600, margin: '12px 0 4px 0', color: '#f5f5f7', letterSpacing: '-0.01em' }}>
                 {item.role}
               </h3>
-              <p style={{ fontSize: '13px', fontWeight: 600, color: '#0066cc', margin: '0 0 12px 0' }}>
+              <p style={{ fontSize: '13px', fontWeight: 600, color: '#2997ff', margin: '0 0 12px 0' }}>
                 {item.company}
               </p>
-              <p style={{ fontSize: '13.5px', color: '#515154', lineHeight: '1.5', margin: 0, fontWeight: 400 }}>
+              <p style={{ fontSize: '13.5px', color: '#d2d2d7', lineHeight: '1.5', margin: 0, fontWeight: 400 }}>
                 {item.description}
               </p>
             </div>
