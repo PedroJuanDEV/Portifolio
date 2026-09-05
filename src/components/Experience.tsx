@@ -14,9 +14,9 @@ const experiencesData: ExperienceItem[] = [
     id: '1',
     role: 'Bootcamp de IA e ServiceNow',
     company: 'Residência Tecnológica: EY',
-    period: 'Março/2026 — Junho/2026',
+    period: 'Março/2026 — Julho/2026',
     description: 'Imersão de 4 meses focada em Inteligência Artificial. Desenvolvimento e simulação de diretrizes de segurança aplicadas a 5+ cenários complexos de agentes de IA e capacitação na plataforma ServiceNow.',
-    imageUrl: '/assets/ey-bg.png' // <-- Insira o caminho do seu ícone/foto
+    imageUrl: '/assets/ey-bg.png'
   },
   {
     id: '2',
@@ -56,7 +56,7 @@ export const Experience: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Duplicamos a lista para criar o efeito de loop infinito sem sobressaltos
+  // Duplicamos a lista para criar o efeito de loop infinito
   const infiniteExperiences = [...experiencesData, ...experiencesData];
 
   useEffect(() => {
@@ -67,8 +67,8 @@ export const Experience: React.FC = () => {
         const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
         const cardWidth = 380 + 24; // Largura do card + gap
 
-        // Se chegar na metade (fim do primeiro set de dados), reseta instantaneamente para o início sem animação
-        if (scrollLeft >= (scrollWidth / 2)) {
+        // Verifica se chegou ao fim da primeira metade do carrossel duplicado
+        if (scrollLeft >= (scrollWidth - clientWidth) / 2) {
           carouselRef.current.scrollLeft = 0;
         } else {
           carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
@@ -174,7 +174,7 @@ export const Experience: React.FC = () => {
           gap: '24px',
           overflowX: 'auto',
           scrollSnapType: 'x mandatory',
-          paddingLeft: 'calc((100vw - 1400px) / 2 + 32px)',
+          paddingLeft: '32px',
           paddingRight: '32px',
           paddingBottom: '16px'
         }}
@@ -190,7 +190,6 @@ export const Experience: React.FC = () => {
               position: 'relative',
               overflow: 'hidden',
               backgroundColor: '#f5f5f7',
-              // Suporte para imagem de fundo opcional
               backgroundImage: item.imageUrl ? `linear-gradient(180deg, rgba(245, 245, 247, 0.85) 0%, rgba(245, 245, 247, 0.95) 100%), url(${item.imageUrl})` : 'none',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
@@ -213,12 +212,11 @@ export const Experience: React.FC = () => {
             }}
           >
             <div style={{ position: 'relative', zIndex: 2 }}>
-              <div style={{ display: 'flex', justifySelf: 'space-between', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '12px', fontWeight: 600, color: '#86868b', fontFamily: 'monospace' }}>
                   {item.period}
                 </span>
                 
-                {/* Ícone opcional do projeto no canto superior */}
                 {item.imageUrl && (
                   <img 
                     src={item.imageUrl} 
