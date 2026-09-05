@@ -1,0 +1,290 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #e5e7eb;
+  background: #0f172a;
+  line-height: 1.6;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} 
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #020817 0%, #0f172a 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  display: block;
+}
+
+.container {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 72px;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  color: #cbd5e1;
+}
+
+.hero {
+  padding-top: 5rem;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.5fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #7dd3fc;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-copy h1,
+.section h2,
+.experience-item h3,
+.project-card h3 {
+  color: #f8fafc;
+}
+
+.hero-copy h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  line-height: 1.05;
+}
+
+.hero-copy p,
+.section p,
+.experience-item span,
+.company,
+.project-card p,
+.certificates-list span,
+.certificates-list time {
+  color: #cbd5e1;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button.primary {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  color: white;
+}
+
+.button.secondary {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: #f8fafc;
+}
+
+.hero-card {
+  padding: 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1.25rem;
+  background: rgba(15, 23, 42, 0.7);
+  text-align: center;
+}
+
+.avatar {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #22d3ee, #8b5cf6);
+  color: white;
+}
+
+.section h2 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.experience-list,
+.projects-grid,
+.certificates-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.experience-list {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.experience-item,
+.project-card,
+.certificates-list li {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.experience-item h3,
+.project-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.company {
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+
+.projects-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.project-image {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.34), rgba(168, 85, 247, 0.34));
+  color: white;
+  font-weight: 700;
+}
+
+.project-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+  margin: 1rem 0;
+}
+
+.project-card li {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #bae6fd;
+  font-size: 0.8rem;
+}
+
+.project-card a,
+.certificates-list a {
+  color: #7dd3fc;
+  font-weight: 600;
+}
+
+.certificates-list {
+  list-style: none;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.certificates-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.site-footer {
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  padding: 1.5rem 0 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+  .nav-bar,
+  .footer-content,
+  .hero-content {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+}
