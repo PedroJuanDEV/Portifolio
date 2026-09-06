@@ -15,32 +15,39 @@ export const Projects: React.FC = () => {
 
   return (
     <>
-      {/* Box de Fundo Principal com o Gradiente Radial */}
+      {/* Seção Principal */}
       <section id="projects" style={{
-        marginTop: '24px',
-        padding: '48px 32px',
+        marginTop: '32px',
+        padding: '64px 32px',
         maxWidth: '1200px',
         marginLeft: 'auto',
-        marginRight: 'auto',
-        background: 'radial-gradient(circle at 35% 50%, #fff4d9 0%, #ffcc70 45%, #ff8c00 100%)',
-        border: '1px solid rgba(255, 255, 255, 0.4)',
-        borderRadius: '24px',
-        boxShadow: '0 20px 40px rgba(255, 140, 0, 0.2)'
+        marginRight: 'auto'
       }}>
-        <h2 style={{
-          fontSize: '28px',
-          fontWeight: 700,
-          color: '#1d1d1f',
-          letterSpacing: '-0.02em',
-          marginBottom: '32px'
-        }}>
-          Projetos em Destaque
-        </h2>
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <h2 style={{
+            fontSize: 'clamp(32px, 5vw, 48px)',
+            fontWeight: 700,
+            color: '#1d1d1f',
+            letterSpacing: '-0.03em',
+            margin: '0 0 12px 0'
+          }}>
+            Projetos em Destaque
+          </h2>
+          <p style={{
+            fontSize: '17px',
+            color: '#515154',
+            maxWidth: '500px',
+            margin: '0 auto',
+            lineHeight: '1.4'
+          }}>
+            Sistemas, APIs e soluções de back-end desenvolvidas com rigor técnico e arquitetura limpa.
+          </p>
+        </div>
 
-        {/* Grid de Cards */}
+        {/* Grid de Cards estilo Apple Grid (2 colunas amplas com fundo limpo) */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(520px, 1fr))',
           gap: '24px'
         }}>
           {projectsData.map((project) => (
@@ -48,62 +55,110 @@ export const Projects: React.FC = () => {
               key={project.id} 
               onClick={() => setSelectedProject(project)}
               style={{
-                padding: '32px',
-                backgroundColor: '#ffffff',
-                color: '#1d1d1f',
-                border: '1px solid rgba(0, 0, 0, 0.08)',
-                borderRadius: '18px',
+                background: 'linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 100%)',
+                borderRadius: '28px',
+                padding: '48px 32px 36px 32px',
+                border: '1px solid rgba(0, 0, 0, 0.04)',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
+                alignItems: 'center',
+                textAlign: 'center',
                 cursor: 'pointer',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                position: 'relative',
+                overflow: 'hidden',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.02)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)';
+                e.currentTarget.style.transform = 'scale(1.01)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.06)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.02)';
               }}
             >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <span style={{ fontSize: '11px', fontFamily: 'monospace', color: '#86868b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    REPOSITÓRIO
-                  </span>
-                  {project.githubUrl && (
-                    <a 
-                      href={project.githubUrl} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      onClick={(e) => e.stopPropagation()}
-                      style={{ color: '#0066cc', fontSize: '13px', textDecoration: 'none', fontWeight: 600 }}
-                    >
-                      Ver código ↗
-                    </a>
-                  )}
-                </div>
+              {/* Hierarquia de Texto estilo Apple */}
+              <h3 style={{ 
+                fontSize: '28px', 
+                fontWeight: 700, 
+                margin: '0 0 8px 0', 
+                color: '#1d1d1f', 
+                letterSpacing: '-0.01em' 
+              }}>
+                {project.title}
+              </h3>
+              
+              <p style={{ 
+                fontSize: '16px', 
+                color: '#515154', 
+                lineHeight: '1.45', 
+                margin: '0 0 20px 0', 
+                maxWidth: '420px',
+                fontWeight: 400
+              }}>
+                {project.description}
+              </p>
 
-                <h3 style={{ fontSize: '20px', fontWeight: 600, margin: '0 0 12px 0', color: '#1d1d1f', letterSpacing: '-0.01em' }}>
-                  {project.title}
-                </h3>
-                <p style={{ fontSize: '14px', color: '#515154', lineHeight: '1.6', margin: '0 0 24px 0', fontWeight: 400 }}>
-                  {project.description}
-                </p>
+              {/* Botões de Ação idênticos ao "Saiba mais / Comprar" da Apple */}
+              <div style={{ 
+                display: 'flex', 
+                gap: '16px', 
+                alignItems: 'center',
+                marginBottom: '32px' 
+              }}>
+                <span style={{
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: '#0066cc',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}>
+                  Saiba mais <span style={{ fontSize: '12px' }}>›</span>
+                </span>
+
+                {project.githubUrl && (
+                  <a 
+                    href={project.githubUrl} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: '#ffffff',
+                      backgroundColor: '#0071e3',
+                      padding: '6px 16px',
+                      borderRadius: '980px',
+                      textDecoration: 'none',
+                      transition: 'background-color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0077ed'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0071e3'}
+                  >
+                    Repositório
+                  </a>
+                )}
               </div>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {/* Pílulas de Tecnologias organizadas discretamente no rodapé do card */}
+              <div style={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                gap: '6px', 
+                justifyContent: 'center',
+                marginTop: 'auto'
+              }}>
                 {project.technologies.map((tech) => (
                   <span key={tech} style={{
-                    fontSize: '12px',
-                    padding: '4px 10px',
-                    backgroundColor: '#f5f5f7',
-                    color: '#1d1d1f',
+                    fontSize: '11px',
+                    padding: '3px 10px',
+                    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                    color: '#424245',
                     borderRadius: '980px',
-                    border: '1px solid #d2d2d7',
-                    fontWeight: 500
+                    fontWeight: 500,
+                    fontFamily: 'monospace'
                   }}>
                     {tech}
                   </span>
@@ -114,7 +169,7 @@ export const Projects: React.FC = () => {
         </div>
       </section>
 
-      {/* JANELA MODAL CENTRAL (Agora Branca) */}
+      {/* JANELA MODAL CENTRAL (Estilo Apple Sheet / Pop-up) */}
       {selectedProject && (
         <div 
           onClick={() => setSelectedProject(null)}
@@ -124,9 +179,9 @@ export const Projects: React.FC = () => {
             left: 0,
             width: '100vw',
             height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            backdropFilter: 'saturate(180%) blur(12px)',
-            WebkitBackdropFilter: 'saturate(180%) blur(12px)',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            backdropFilter: 'saturate(180%) blur(20px)',
+            WebkitBackdropFilter: 'saturate(180%) blur(20px)',
             zIndex: 999,
             display: 'flex',
             alignItems: 'center',
@@ -138,13 +193,14 @@ export const Projects: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
-              maxWidth: '640px',
-              backgroundColor: '#ffffff', // Fundo branco na janela modal
-              border: '1px solid rgba(0, 0, 0, 0.08)',
-              borderRadius: '24px',
-              padding: '40px',
-              boxShadow: '0 24px 48px rgba(0,0,0,0.18)',
-              position: 'relative'
+              maxWidth: '680px',
+              backgroundColor: '#ffffff',
+              borderRadius: '28px',
+              padding: '48px',
+              boxShadow: '0 30px 60px rgba(0,0,0,0.15)',
+              position: 'relative',
+              maxHeight: '85vh',
+              overflowY: 'auto'
             }}
           >
             {/* Botão Fechar */}
@@ -157,40 +213,41 @@ export const Projects: React.FC = () => {
                 width: '32px',
                 height: '32px',
                 borderRadius: '50%',
-                border: '1px solid #d2d2d7',
+                border: 'none',
                 backgroundColor: '#f5f5f7',
                 color: '#1d1d1f',
                 cursor: 'pointer',
-                fontWeight: 'bold',
+                fontWeight: 600,
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                fontSize: '14px'
               }}
             >
               ✕
             </button>
 
-            <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#1d1d1f', margin: '0 0 16px 0', letterSpacing: '-0.02em', paddingRight: '40px' }}>
+            <h2 style={{ fontSize: '32px', fontWeight: 700, color: '#1d1d1f', margin: '0 0 12px 0', letterSpacing: '-0.02em', paddingRight: '30px' }}>
               {selectedProject.title}
             </h2>
             
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
               {selectedProject.technologies.map((tech) => (
                 <span key={tech} style={{
                   fontSize: '12px',
-                  padding: '4px 10px',
+                  padding: '4px 12px',
                   backgroundColor: '#f5f5f7',
                   color: '#1d1d1f',
                   borderRadius: '980px',
-                  border: '1px solid #d2d2d7',
-                  fontWeight: 500
+                  fontWeight: 500,
+                  fontFamily: 'monospace'
                 }}>
                   {tech}
                 </span>
               ))}
             </div>
 
-            <p style={{ fontSize: '16px', color: '#515154', lineHeight: '1.6', margin: '0 0 32px 0' }}>
+            <p style={{ fontSize: '17px', color: '#515154', lineHeight: '1.6', margin: '0 0 36px 0' }}>
               {/* @ts-ignore */}
               {selectedProject.detailedDescription || selectedProject.description}
             </p>
@@ -202,17 +259,17 @@ export const Projects: React.FC = () => {
                 rel="noreferrer"
                 style={{
                   display: 'inline-block',
-                  padding: '14px 28px',
-                  backgroundColor: '#1d1d1f',
+                  padding: '12px 28px',
+                  backgroundColor: '#0071e3',
                   color: '#ffffff',
                   borderRadius: '980px',
-                  fontSize: '14px',
+                  fontSize: '15px',
                   fontWeight: 600,
                   textDecoration: 'none',
                   textAlign: 'center'
                 }}
               >
-                Acessar Repositório ↗
+                Acessar Repositório no GitHub ↗
               </a>
             )}
           </div>

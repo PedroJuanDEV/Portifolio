@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
         }}>
           <div style={{ maxWidth: '600px' }}>
             <span style={{ fontSize: '11px', fontFamily: 'monospace', color: '#86868b', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: '12px' }}>
-              03. VAMOS CONVERSAR?
+            VAMOS CONVERSAR?
             </span>
             <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 800, margin: '0 0 16px 0', letterSpacing: '-0.02em', color: '#ffffff' }}>
               Em busca da primeira oportunidade em Tech.
