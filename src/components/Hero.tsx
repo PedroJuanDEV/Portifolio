@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
       position: 'relative',
       overflow: 'hidden',
 
-      backgroundImage: "url('blu.png')",
+      backgroundImage: "url('5.png')",
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'

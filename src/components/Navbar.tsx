@@ -8,7 +8,7 @@ export const Navbar: React.FC = () => {
       left: 0,
       width: '100%',
       // Fundo branco translúcido original com glassmorphism
-      backgroundColor: 'rgba(255, 255, 255, 0.75)',
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
       backdropFilter: 'saturate(180%) blur(16px)',
       WebkitBackdropFilter: 'saturate(180%) blur(16px)',
       borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
